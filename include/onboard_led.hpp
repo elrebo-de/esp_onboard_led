@@ -18,8 +18,9 @@
 
 class OnBoardLed {
 public:
-	OnBoardLed(std::string tag, gpio_num_t ledPin, std::string ledType, std::string colorOrder,
+	OnBoardLed(std::string tag, gpio_num_t ledPin, std::string colorOrder,
 	           std::string stripBackend, led_model_t ledModel, int blinkPeriod);
+	OnBoardLed(std::string tag, gpio_num_t ledPin, uint8_t activeLevel, int blinkPeriod);
 	virtual ~OnBoardLed();
     void setLedPixelColor(uint32_t index, uint32_t red, uint32_t green, uint32_t blue);
     void show(void);
@@ -49,6 +50,9 @@ private:
     led_strip_config_t strip_config;
     led_strip_rmt_config_t rmt_config;
     led_strip_spi_config_t spi_config;
+
+    // ledType GPIO activeLevel: low (0) or high (1)
+    uint8_t activeLevel;
 };
 
 #endif /* ONBOARD_LED_HPP_ */
