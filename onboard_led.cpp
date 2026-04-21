@@ -7,6 +7,13 @@
  * this work is licenced under the Apache 2.0 licence
  */
 
+#include "esp_idf_version.h"
+
+#if ESP_IDF_VERSION_MAJOR == 6
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#endif
+
 #include "onboard_led.hpp"
 #include "esp_log.h"
 #include "driver/gpio.h"
@@ -37,6 +44,7 @@ OnBoardLed::OnBoardLed(std::string tag, gpio_num_t ledPin, std::string colorOrde
                            .b_pos = 2,
                            .w_pos = 3,
                            .reserved = 0,
+                           .bytes_per_color = 1,
                            .num_components = 3
                 }
             },
@@ -56,6 +64,7 @@ OnBoardLed::OnBoardLed(std::string tag, gpio_num_t ledPin, std::string colorOrde
                            .b_pos = 2,
                            .w_pos = 3,
                            .reserved = 0,
+                           .bytes_per_color = 1,
                            .num_components = 3
                 }
             },
